@@ -3,11 +3,10 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const http = require('http');
 const cookieParser = require('cookie-parser');
-const validator = require('express-validator');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
-const flash = require('flash');
+const flash = require('connect-flash');
 const passport = require('passport');
 const dotenv = require('dotenv');
 
@@ -15,7 +14,7 @@ const container = require('./container');
 
 dotenv.config({ path: './config.env' });
 
-container.resolve(function (users) {
+container.resolve(function (users, _) {
   mongoose.Promise = global.Promise;
   const DB = process.env.DATABASE.replace(
     '<PASSWORD>',
@@ -52,7 +51,7 @@ container.resolve(function (users) {
     app.set('view engine', 'ejs');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(validator());
+
     app.use(
       session({
         secret: 'thisisasecretkey',
@@ -64,5 +63,6 @@ container.resolve(function (users) {
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
+    app.locals._ = _;
   }
 });
