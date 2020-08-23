@@ -164,7 +164,7 @@ module.exports = function (async, Users, Message) {
                     // mesaj citit
                     function (callback) {
                         if (req.body.chatId) {
-                            Message.update({
+                            Message.updateOne({
                                 '_id': req.body.chatId
                             },
                                 {

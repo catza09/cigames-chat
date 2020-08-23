@@ -110,7 +110,7 @@ module.exports = function (async, Game, _, Users, Message, FriendResult) {
       async.parallel(
         [
           function (callback) {
-            Game.update(
+            Game.updateOne(
               {
                 '_id': req.body.id,
                 'subscribers.username': { $ne: req.user.username },

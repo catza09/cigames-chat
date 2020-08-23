@@ -87,7 +87,7 @@ module.exports = function (async, Users, Message, FriendResult) {
             async.parallel([
                 function (callback) {
                     if (req.body.favGame) {
-                        Users.update({
+                        Users.updateOne({
                             '_id': req.user._id,
                             'favGame.gameName': { $ne: req.body.favGame }
                         },
@@ -114,7 +114,7 @@ module.exports = function (async, Users, Message, FriendResult) {
 
                 function (callback) {
                     if (req.body.favGameType) {
-                        Users.update({
+                        Users.updateOne({
                             '_id': req.user._id,
                             'favGameType.gameType': { $ne: req.body.favGameType }
                         },

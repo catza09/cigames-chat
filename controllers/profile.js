@@ -97,7 +97,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                 //pastrarea imaginii de profil
                 function (result, callback) {
                     if (req.body.upload === null || req.body.upload === '') {
-                        Users.update({
+                        Users.updateOne({
                             '_id': req.user._id,
                         },
                             {
@@ -115,7 +115,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                             }
                         )
                     } else if (req.body.upload !== null || req.body.upload !== '') {
-                        Users.update({
+                        Users.updateOne({
                             '_id': req.user._id,
                         },
                             {
