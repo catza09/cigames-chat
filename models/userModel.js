@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const userSchema = mongoose.Schema({
-  username: { type: String, unique: true },
+  username: { type: String, unique: true, default: '' },
   fullname: { type: String, unique: true, default: '' },
   email: { type: String, unique: true },
   password: { type: String, default: '' },
@@ -9,7 +9,28 @@ const userSchema = mongoose.Schema({
   facebook: { type: String, default: '' },
   fbTokens: Array,
   google: { type: String, default: '' },
-  googleTokens: Array,
+  sentRequest: [
+    {
+      username: { type: String, default: '' }
+    }
+  ],
+  request: [
+    {
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      username: { type: String, default: '' }
+    }
+  ],
+  friendsList: [
+    {
+      friendId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      friendName: { type: String, default: '' }
+    }
+  ],
+  totalRequest: { type: Number, default: 0 },
+  country: { type: String, default: '' },
+  mantra: { type: String, default: '' },
+  favGame: [{ gameName: { type: String, default: '' } }],
+  favGameType: [{ gameType: { type: String, default: '' } }]
 });
 
 userSchema.methods.encryptPassword = function (password) {

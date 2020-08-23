@@ -5,6 +5,13 @@ const simpleDependecies = [
   ['_', 'lodash'],
   ['passport', 'passport'],
   ['validator', 'express-validator'],
+  ['async', 'async'],
+  ['formidable', 'formidable'],
+  ['Game', './models/gameModel'],
+  ['Users', './models/userModel'],
+  ['Message', './models/messageModel'],
+  ['Group', './models/groupmessage'],
+
 ];
 
 simpleDependecies.forEach(function (val) {
