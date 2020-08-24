@@ -97,11 +97,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                 //pastrarea imaginii de profil
                 function (result, callback) {
                     if (req.body.upload === null || req.body.upload === '') {
-<<<<<<< HEAD
-                        Users.update({
-=======
                         Users.updateOne({
->>>>>>> 242922975f9107402854034588ed5f13e6147d24
                             '_id': req.user._id,
                         },
                             {
@@ -119,11 +115,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                             }
                         )
                     } else if (req.body.upload !== null || req.body.upload !== '') {
-<<<<<<< HEAD
-                        Users.update({
-=======
                         Users.updateOne({
->>>>>>> 242922975f9107402854034588ed5f13e6147d24
                             '_id': req.user._id,
                         },
                             {

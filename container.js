@@ -10,11 +10,7 @@ const simpleDependecies = [
   ['Game', './models/gameModel'],
   ['Users', './models/userModel'],
   ['Message', './models/messageModel'],
-<<<<<<< HEAD
-  ['Group', './models/groupmessage'],
-=======
   ['Group', './models/groupmessage']
->>>>>>> 242922975f9107402854034588ed5f13e6147d24
 
 ];
 

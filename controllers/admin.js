@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 module.exports = function (formidable, Game,) {
-=======
-module.exports = function (formidable, Game) {
->>>>>>> 242922975f9107402854034588ed5f13e6147d24
   return {
     SetRouting: function (router) {
       router.get('/dashboard', this.adminPage);
