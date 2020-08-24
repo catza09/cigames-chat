@@ -18,7 +18,7 @@ const { Global } = require('./helpers/GlobalClass');
 
 const container = require('./container');
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './env/config.env' });
 
 container.resolve(function (
   users,

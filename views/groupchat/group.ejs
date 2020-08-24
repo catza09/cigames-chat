@@ -33,11 +33,7 @@
                     <div class="front">
                       <div class="cover"></div>
                       <div class="user cover-img">
-                        <% if(user.google !== ''){ %>
-                        <img src="<%=user.userImage %>" class="img-circle" alt="">
-                        <% } else{%>
                         <img src="/<%=user.userImage %>" class="img-circle" alt="">
-                        <% } %>
 
                       </div>
                       <div class="content">
@@ -115,7 +111,7 @@
                       <% if(val.sender.google !== ''){ %>
                       <img src="<%=val.sender.userImage %>" class="img-circle" alt="">
                       <% } else{%>
-                      <img src="/<%=val.sender.userImage %>" class="img-circle" alt="">
+
                       <% } %>
                     </span>
                     <div class="chat-body1">
