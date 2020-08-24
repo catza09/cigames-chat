@@ -10,7 +10,7 @@ const simpleDependecies = [
   ['Game', './models/gameModel'],
   ['Users', './models/userModel'],
   ['Message', './models/messageModel'],
-  ['Group', './models/groupmessage'],
+  ['Group', './models/groupmessage']
 
 ];
 

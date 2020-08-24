@@ -1,4 +1,4 @@
-module.exports = function (formidable, Game,) {
+module.exports = function (formidable, Game) {
   return {
     SetRouting: function (router) {
       router.get('/dashboard', this.adminPage);

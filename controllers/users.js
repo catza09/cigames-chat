@@ -113,7 +113,7 @@ module.exports = function (_, passport, User, validator) {
     facebookLogin: passport.authenticate('facebook', {
       successRedirect: '/home',
       failureRedirect: '/signup',
-      //  failureFlash: true,
+      failureFlash: true,
     }),
 
     googleLogin: passport.authenticate('google', {

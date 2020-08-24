@@ -1,5 +1,3 @@
-const path = require('path');
-const fs = require('fs');
 module.exports = function (async, Users, Message, FriendResult) {
     return {
         SetRouting: function (router) {
