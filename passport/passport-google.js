@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 "use strict";
+=======
+'use strict';
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
 
 const passport = require('passport');
 const User = require('../models/userModel');
@@ -17,7 +21,10 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
 //middleware
 passport.use(
   new GoogleStrategy(

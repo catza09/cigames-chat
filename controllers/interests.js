@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 const path = require('path');
 const fs = require('fs');
+=======
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
 module.exports = function (async, Users, Message, FriendResult) {
     return {
         SetRouting: function (router) {
@@ -87,7 +90,11 @@ module.exports = function (async, Users, Message, FriendResult) {
             async.parallel([
                 function (callback) {
                     if (req.body.favGame) {
+<<<<<<< HEAD
                         Users.update({
+=======
+                        Users.updateOne({
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
                             '_id': req.user._id,
                             'favGame.gameName': { $ne: req.body.favGame }
                         },
@@ -114,7 +121,11 @@ module.exports = function (async, Users, Message, FriendResult) {
 
                 function (callback) {
                     if (req.body.favGameType) {
+<<<<<<< HEAD
                         Users.update({
+=======
+                        Users.updateOne({
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
                             '_id': req.user._id,
                             'favGameType.gameType': { $ne: req.body.favGameType }
                         },

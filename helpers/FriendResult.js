@@ -164,7 +164,11 @@ module.exports = function (async, Users, Message) {
                     // mesaj citit
                     function (callback) {
                         if (req.body.chatId) {
+<<<<<<< HEAD
                             Message.update({
+=======
+                            Message.updateOne({
+>>>>>>> 242922975f9107402854034588ed5f13e6147d24
                                 '_id': req.body.chatId
                             },
                                 {
