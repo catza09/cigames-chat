@@ -98,7 +98,7 @@ container.resolve(function (
 
     app.use(
       session({
-        secret: "thisisasecretkey",
+        secret: process.env.SECRET_SESSION_KEY,
         resave: true,
         saveUninitialized: true,
         store: new MongoStore({ mongooseConnection: mongoose.connection })

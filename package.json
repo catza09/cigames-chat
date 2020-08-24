@@ -38,6 +38,7 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.6.0",
     "flash": "^1.1.0",
+    "forever": "^3.0.2",
     "formidable": "^1.2.2",
     "helmet": "^3.18.0",
     "lodash": "^4.17.19",

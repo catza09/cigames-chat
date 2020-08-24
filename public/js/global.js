@@ -36,7 +36,7 @@ $(document).ready(function () {
         //ol.append(users[i].name);
 
         var list =
-          '<img src="' + users[i].img + '" class="pull-left img-circle" style="width:50px; height:50px; margin-right:10px;"/><p>' +
+          '<img src="/' + users[i].img + '" class="pull-left img-circle" style="width:50px; height:50px; margin-right:10px;"/><p>' +
           '<a id="val" href="/chat/' +
           userName.replace(/ /g, '-') +
           '.' +
