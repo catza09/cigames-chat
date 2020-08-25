@@ -213,7 +213,6 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                     const result1 = results[0];
                     const result2 = results[1];
 
-
                     res.render('user/overview', {
                         title: 'Cigames Chat - Overview',
                         user: req.user,

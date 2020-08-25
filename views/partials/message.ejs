@@ -32,11 +32,7 @@ if(chat[i].body.isRead === false){ numberOfTrue = numberOfTrue + 1 }
           <div class="row">
             <div class="col-md-3">
               <p class="text-center">
-                <% if(val.body.sender.google !== ''){ %>
                 <img src="<%=val.body.sender.userImage %>" class="img-circle  img-responsive dropdown-img">
-                <% } else{%>
-                <img src="/<%=val.body.sender.userImage %>" class="img-circle  img-responsive dropdown-img">
-                <% } %>
               </p>
             </div>
             <div class="col-md-9 pleft-0">
@@ -64,11 +60,7 @@ if(chat[i].body.isRead === false){ numberOfTrue = numberOfTrue + 1 }
           <div class="row">
             <div class="col-md-3">
               <p class="text-center">
-                <% if(val.body.receiver.google !== ''){ %>
                 <img src="<%=val.body.receiver.userImage %>" class="img-circle  img-responsive dropdown-img">
-                <% } else{%>
-                <img src="/<%=val.body.receiver.userImage %>" class="img-circle  img-responsive dropdown-img">
-                <% } %>
               </p>
             </div>
             <div class="col-md-9 pleft-0">

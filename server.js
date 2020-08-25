@@ -92,7 +92,9 @@ container.resolve(function (
     require('./passport/passport-facebook');
     require('./passport/passport-google');
     app.use(express.static('public'));
-    app.use(express.static('public/uploads'));
+    app.use('/group/', express.static('./public/uploads'));
+    app.use('/chat/', express.static('./public/uploads'));
+    app.use('/', express.static('./public/uploads'));
     app.use(cookieParser());
     app.set('view engine', 'ejs');
     app.use(bodyParser.json());
