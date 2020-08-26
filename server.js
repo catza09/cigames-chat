@@ -34,10 +34,7 @@ container.resolve(function (
 ) {
   //conectare baza de date
   mongoose.Promise = global.Promise;
-  // const DB = process.env.DATABASE.replace(
-  //   '<PASSWORD>',
-  //   process.env.DATABASE_PASSWORD
-  // );
+
 
   const DB = process.env.DATABASE_URI;
   mongoose
@@ -95,6 +92,7 @@ container.resolve(function (
     app.use('/group/', express.static('./public/uploads'));
     app.use('/chat/', express.static('./public/uploads'));
     app.use('/', express.static('./public/uploads'));
+    app.use('/profile/', express.static('./public/uploads'));
     app.use(cookieParser());
     app.set('view engine', 'ejs');
     app.use(bodyParser.json());

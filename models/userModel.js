@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema({
       friendName: { type: String, default: '' }
     }
   ],
+  role: { type: String, enum: ['user', 'admin'], default: 'user' },
   totalRequest: { type: Number, default: 0 },
   country: { type: String, default: '' },
   mantra: { type: String, default: '' },
