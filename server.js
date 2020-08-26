@@ -93,6 +93,7 @@ container.resolve(function (
     app.use('/chat/', express.static('./public/uploads'));
     app.use('/', express.static('./public/uploads'));
     app.use('/profile/', express.static('./public/uploads'));
+    app.use('/settings/', express.static('./public/uploads'));
     app.use(cookieParser());
     app.set('view engine', 'ejs');
     app.use(bodyParser.json());
