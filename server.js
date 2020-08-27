@@ -13,6 +13,9 @@ const socketIO = require('socket.io');
 const compression = require('compression');
 const helmet = require('helmet');
 
+const adminRouter = require('./controllers/admin');
+const forgotRouter = require('./routes/resetpass')
+
 const { Users } = require('./helpers/UsersClass');
 const { Global } = require('./helpers/GlobalClass');
 
@@ -23,7 +26,6 @@ dotenv.config({ path: './env/config.env' });
 container.resolve(function (
   users,
   _,
-  admin,
   home,
   group,
   results,
@@ -57,6 +59,7 @@ container.resolve(function (
     });
     ConfigureExpress(app);
     //middleware
+
     app.use(compression());
     app.use(helmet());
 
@@ -68,7 +71,6 @@ container.resolve(function (
     //setare router
     const router = require('express-promise-router')();
     users.SetRouting(router);
-    admin.SetRouting(router);
     home.SetRouting(router);
     group.SetRouting(router);
     results.SetRouting(router);
@@ -88,6 +90,8 @@ container.resolve(function (
     require('./passport/passport-local');
     require('./passport/passport-facebook');
     require('./passport/passport-google');
+    app.use('/admin', adminRouter);
+    app.use('/forgotpassword', forgotRouter);
     app.use(express.static('public'));
     app.use('/group/', express.static('./public/uploads'));
     app.use('/chat/', express.static('./public/uploads'));

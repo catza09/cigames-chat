@@ -2,7 +2,8 @@ body {
   font-size: 16px;
   line-height: 1.42857143;
   color: #555;
-  background: #eeeeee;
+ /* background: #eeeeee; */
+ background-image: url("../uploads/cigames.png") !important;
 }
 
 .navbar {

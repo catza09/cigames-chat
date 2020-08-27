@@ -3,7 +3,8 @@ body {
   line-height: 1.42857143;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #555;
-  background: #eeeeee;
+ /* background: #eeeeee; */
+ background-image: url("../uploads/cigames.png") !important;
 }
 
 h1 {

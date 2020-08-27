@@ -1,14 +1,16 @@
 'use strict';
 
-module.exports = function (_, passport, User, validator) {
+module.exports = function (_, passport, Users, validator) {
   return {
     SetRouting: function (router) {
       router.get('/', this.indexPage);
       router.get('/signup', this.getSignUp);
+      router.get('/forgotpassword', this.getForgotPassword);
       router.get('/auth/facebook', this.getFacebookLogin);
       router.get('/auth/facebook/callback', this.facebookLogin);
       router.get('/auth/google', this.getGoogleLogin);
       router.get('/auth/google/callback', this.googleLogin);
+
 
       router.post(
         '/',
@@ -60,7 +62,18 @@ module.exports = function (_, passport, User, validator) {
         this.postValidation,
         this.postSignUp
       );
+
     },
+
+    getForgotPassword: function (req, res) {
+      const errors = req.flash('error');
+      return res.render('forgotpassword', {
+        title: 'Cigames Chat - Forgot Password',
+        messages: errors,
+        hasErrors: errors.length > 0,
+      });
+    },
+
     indexPage: function (req, res) {
       const errors = req.flash('error');
       return res.render('index', {
@@ -121,5 +134,7 @@ module.exports = function (_, passport, User, validator) {
       failureRedirect: '/signup',
       failureFlash: true,
     }),
+
+
   };
 };
