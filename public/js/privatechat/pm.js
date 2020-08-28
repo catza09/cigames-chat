@@ -24,29 +24,29 @@ $(document).ready(function () {
     audio: true
   }).then(stream => {
     addVideoStream(myVideo, stream);
-    socket.on('connect', function () {
-      var params = {
-        room1: paramOne,
-        room2: paramTwo
-      };
 
-      //emiterea unui nou eveniment pentru mesajul privat
-      socket.emit('join PM', params);
-
-      socket.on('message display', function () {
-        $('#reload').load(location.href + ' #reload');
-      });
-
-      //ascultarea evenimentului de refresh din home
-      socket.on('new refresh', function () {
-        $('#reload').load(location.href + ' #reload');
-      });
-    });
 
   })
 
 
+  socket.on('connect', function () {
+    var params = {
+      room1: paramOne,
+      room2: paramTwo
+    };
 
+    //emiterea unui nou eveniment pentru mesajul privat
+    socket.emit('join PM', params);
+
+    socket.on('message display', function () {
+      $('#reload').load(location.href + ' #reload');
+    });
+
+    //ascultarea evenimentului de refresh din home
+    socket.on('new refresh', function () {
+      $('#reload').load(location.href + ' #reload');
+    });
+  });
 
   //ascultarea evenimentului new message
   socket.on('new message', function (data) {
