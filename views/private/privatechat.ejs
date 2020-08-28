@@ -6,14 +6,15 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><%= title %></title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+  < <title><%= title %></title>
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/group.css" />
-  <link rel="stylesheet" href="/css/modal.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/group.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
 </head>
 
 <body>
@@ -53,10 +54,11 @@
             </div>
           </div>
 
-          <div class="col-sm-5 col-md-6 message_section">
+          <div class="col-sm-5 col-md-5 message_section">
             <div class="row">
               <div class="new_message_head">
                 <div class="pull-left">
+                  <a><i class="fa fa-video-camera" aria-hidden="true" style="text-decoration: none;"></i></a>
                   <button id="receiver_name"></button>
                 </div>
                 <div class="pull-right"></div>
@@ -69,11 +71,7 @@
                   <% if(name === val.receiver.username.toLowerCase()){ %>
                   <li class="left">
                     <span class="chat-img1 pull-left">
-                      <% if(val.receiver.google !== ''){ %>
                       <img src="<%=val.sender.userImage %>" class="img-circle " alt="">
-                      <% } else{%>
-                      <img src="/<%=val.sender.userImage %>" class="img-circle " alt="">
-                      <% } %>
                     </span>
                     <div class="chat-body1">
                       <span class="chat-name"><%= val.senderName %></span>
@@ -84,12 +82,7 @@
                   <% } else if(name === val.sender.username.toLowerCase()){ %>
                   <li class="left">
                     <span class="chat-img1 pull-left">
-                      <% if(val.sender.google !== ''){ %>
                       <img src="<%=val.sender.userImage %>" class="img-circle  " alt="">
-                      <% } else{%>
-                      <img src="/<%=val.sender.userImage %>" class="img-circle " alt="">
-                      <% } %>
-
                     </span>
                     <div class="chat-body1">
                       <span class="chat-name"><%= val.senderName %></span>
@@ -106,7 +99,7 @@
                     <li class="left">
                       <span class="chat-img1 pull-left"
                         ><img
-                          src="/{{userImage}}"
+                          src="{{userImage}}"
                           class="img-circle"
                           alt=""
                       /></span>
@@ -133,10 +126,14 @@
               </div>
             </div>
           </div>
+
+          <div id="video-grid"></div>
+
         </div>
       </div>
     </div>
   </div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

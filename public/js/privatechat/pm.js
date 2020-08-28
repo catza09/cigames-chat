@@ -1,6 +1,8 @@
 $(document).ready(function () {
   var socket = io();
+
   var paramOne = $.deparam(window.location.pathname);
+
   //split ultima parte din url pentru a putea fi folosit pentru participantii chat-ului privat
   var newParam = paramOne.split('.');
 
@@ -13,24 +15,38 @@ $(document).ready(function () {
   swap(newParam, 0, 1);
   var paramTwo = newParam[0] + '.' + newParam[1];
 
-  socket.on('connect', function () {
-    var params = {
-      room1: paramOne,
-      room2: paramTwo
-    };
 
-    //emiterea unui nou eveniment pentru mesajul privat
-    socket.emit('join PM', params);
+  const myVideo = document.createElement('video');
+  myVideo.muted = true;
 
-    socket.on('message display', function () {
-      $('#reload').load(location.href + ' #reload');
+  navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true
+  }).then(stream => {
+    addVideoStream(myVideo, stream);
+    socket.on('connect', function () {
+      var params = {
+        room1: paramOne,
+        room2: paramTwo
+      };
+
+      //emiterea unui nou eveniment pentru mesajul privat
+      socket.emit('join PM', params);
+
+      socket.on('message display', function () {
+        $('#reload').load(location.href + ' #reload');
+      });
+
+      //ascultarea evenimentului de refresh din home
+      socket.on('new refresh', function () {
+        $('#reload').load(location.href + ' #reload');
+      });
     });
 
-    //ascultarea evenimentului de refresh din home
-    socket.on('new refresh', function () {
-      $('#reload').load(location.href + ' #reload');
-    });
-  });
+  })
+
+
+
 
   //ascultarea evenimentului new message
   socket.on('new message', function (data) {
@@ -86,4 +102,16 @@ function swap(input, value_1, value_2) {
   var temp = input[value_1];
   input[value_1] = input[value_2];
   input[value_2] = temp;
+}
+
+
+//adaugarea video stream
+
+function addVideoStream(video, stream) {
+  const videoGrid = document.getElementById('video-grid');
+  video.srcObject = stream;
+  video.addEventListener('loadedmetadata', () => {
+    video.play();
+  });
+  videoGrid.append(video);
 }
