@@ -7,9 +7,11 @@ module.exports = function (io) {
     });
     //ascultarea evenimentului pm server side si trimiterea mesajului
     socket.on('private message', (message, callback) => {
+      //  console.log(message);
       io.to(message.room).emit('new message', {
         text: message.text,
-        sender: message.sender
+        sender: message.sender,
+        image: message.userPic
       });
 
       io.emit('message display', {});

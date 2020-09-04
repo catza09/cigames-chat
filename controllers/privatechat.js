@@ -73,6 +73,7 @@ module.exports = function (async, Users, Message, FriendResult) {
         ],
         (err, results) => {
           const result1 = results[0];
+          //  console.log(result1);
           const result2 = results[1];
           const result3 = results[2];
 

@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var socket = io();
-
+  var userPic = $('#name-image').val();
+  const chatArea = document.querySelector('.chat_area');
   var paramOne = $.deparam(window.location.pathname);
 
   //split ultima parte din url pentru a putea fi folosit pentru participantii chat-ului privat
@@ -16,17 +17,26 @@ $(document).ready(function () {
   var paramTwo = newParam[0] + '.' + newParam[1];
 
 
-  const myVideo = document.createElement('video');
-  myVideo.muted = true;
+  // const myVideo = document.createElement('video');
+  // myVideo.muted = true;
 
-  navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-  }).then(stream => {
-    addVideoStream(myVideo, stream);
+  // navigator.mediaDevices.getUserMedia({
+  //   video: true,
+  //   audio: true
+  // }).then(stream => {
+  //   addVideoStream(myVideo, stream);
 
-
-  })
+  // socket.on('connect', userId => {
+  //   connectToNewUser(userId, stream);
+  //   paramOne.on('call', call => {
+  //     call.answer(stream);
+  //     const video = document.createElement('video');
+  //     call.on('stream', userVideoStream => {
+  //       addVideoStream(video, userVideoStream);
+  //     })
+  //   });
+  // });
+  //})
 
 
   socket.on('connect', function () {
@@ -51,12 +61,15 @@ $(document).ready(function () {
   //ascultarea evenimentului new message
   socket.on('new message', function (data) {
     var template = $('#message-template').html();
+
     var message = Mustache.render(template, {
       text: data.text,
-      sender: data.sender
+      sender: data.sender,
+      userImage: data.image,
     });
 
     $('#messages').append(message);
+    chatArea.scrollTop = chatArea.scrollHeight;
   });
 
   //evenmentul de submit
@@ -65,6 +78,7 @@ $(document).ready(function () {
     var msg = $('#msg').val();
     var sender = $('#name-user').val();
 
+    chatArea.scrollTop = chatArea.scrollHeight;
     //emitere nou mesaj partea client
     if (msg.trim().length > 0) {
       socket.emit(
@@ -72,13 +86,17 @@ $(document).ready(function () {
         {
           text: msg,
           sender: sender,
-          room: paramOne
+          room: paramOne,
+          userPic: userPic
         },
         function () {
           $('#msg').val('');
+          $('#msg').focus();
         }
       );
+
     }
+
   });
 
   //trimiterea private chat catre baza de date
@@ -92,6 +110,7 @@ $(document).ready(function () {
       },
       success: function () {
         $('#msg').val('');
+        $('#msg').focus();
       }
     });
   });
@@ -107,11 +126,22 @@ function swap(input, value_1, value_2) {
 
 //adaugarea video stream
 
-function addVideoStream(video, stream) {
-  const videoGrid = document.getElementById('video-grid');
-  video.srcObject = stream;
-  video.addEventListener('loadedmetadata', () => {
-    video.play();
-  });
-  videoGrid.append(video);
+// function addVideoStream(video, stream) {
+//   const videoGrid = document.getElementById('video-grid');
+//   video.srcObject = stream;
+//   video.addEventListener('loadedmetadata', () => {
+//     video.play();
+//   });
+//   videoGrid.append(video);
+// }
+
+function connectToNewUser(userId, stream) {
+  const call = paramOne.call(userId, stream);
+  const video = document.createElement('video');
+  call.on('stream', userVideoStream => {
+    addVideoStream(video, userVideoStream);
+  })
+  call.on('close', () => {
+    video.remove();
+  })
 }

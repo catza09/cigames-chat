@@ -3,7 +3,7 @@ $(document).ready(function () {
   var room = $('#groupName').val();
   var sender = $('#sender').val();
   var userPic = $('#name-image').val();
-
+  const chatArea = document.querySelector('.chat_area');
   socket.on('connect', function () {
     // console.log('yeah user connect');
     //sala unde se conecteaza din adresa
@@ -41,7 +41,8 @@ $(document).ready(function () {
     $('#users').html(ol);
   });
 
-  //asculatrea evenimentului newMessage de la server, randarea  folosind Mustache si adaugarea mesajului in grup
+  //asculatrea evenimentului newMessage de la server,
+  // randarea  folosind Mustache si adaugarea mesajului in grup
 
   socket.on('newMessage', function (data) {
     var template = $('#message-template').html();
@@ -52,11 +53,14 @@ $(document).ready(function () {
     });
 
     $('#messages').append(message);
+    chatArea.scrollTop = chatArea.scrollHeight;
   });
 
   $('#message-form').on('submit', function (e) {
     e.preventDefault();
+
     var msg = $('#msg').val();
+    chatArea.scrollTop = chatArea.scrollHeight;
     //emitere nou mesaj partea client
     socket.emit(
       'createMessage',
@@ -70,6 +74,7 @@ $(document).ready(function () {
       //golirea campului text dupa trimiterea mesajului
       function () {
         $('#msg').val('');
+        $('#msg').focus();
       }
     );
 
@@ -82,7 +87,9 @@ $(document).ready(function () {
         groupName: room
       },
       success: function () {
+        chatArea.scrollTop = chatArea.scrollHeight;
         $('#msg').val('');
+        $('#msg').focus();
       }
     })
   });

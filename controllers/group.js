@@ -62,12 +62,11 @@ module.exports = function (Users, async, Message, FriendResult, Group) {
               }
             );
           },
-          //functie pentru cautarea mesajelor din bazade date pentru acel group
+          //functie pentru cautarea mesajelor din baza de date pentru acel group
           function (callback) {
             Group.find({})
               .populate('sender')
               .exec((err, result) => {
-                //   console.log(result);
                 callback(err, result);
               });
           }

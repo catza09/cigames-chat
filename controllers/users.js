@@ -105,7 +105,7 @@ module.exports = function (_, passport, Users, validator) {
         messages.push(error.msg);
       });
 
-      // req.flash('error', messages);
+      //req.flash('error', messages);
       return next();
     },
 

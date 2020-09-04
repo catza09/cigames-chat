@@ -13,6 +13,7 @@ const socketIO = require('socket.io');
 const compression = require('compression');
 const helmet = require('helmet');
 
+
 const adminRouter = require('./controllers/admin');
 const forgotRouter = require('./routes/resetpass')
 
@@ -60,6 +61,7 @@ container.resolve(function (
     ConfigureExpress(app);
     //middleware
 
+
     app.use(compression());
     app.use(helmet());
 
@@ -85,6 +87,7 @@ container.resolve(function (
     });
   }
 
+
   //configurare express sesiuni si logare cu passport
   function ConfigureExpress(app) {
     require('./passport/passport-local');
@@ -106,7 +109,7 @@ container.resolve(function (
     app.use(
       session({
         secret: process.env.SECRET_SESSION_KEY,
-        resave: true,
+        resave: false,
         saveUninitialized: true,
         store: new MongoStore({ mongooseConnection: mongoose.connection })
       })
@@ -120,3 +123,4 @@ container.resolve(function (
 
   }
 });
+

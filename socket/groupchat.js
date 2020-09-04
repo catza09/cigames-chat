@@ -14,9 +14,9 @@ module.exports = function (io, Users) {
       callback();
     });
 
-    //atrimiterea mesajelor catre toti utilizatorii dintr-o sala
+    //trimiterea mesajelor catre toti utilizatorii dintr-o sala
     socket.on('createMessage', (message, callback) => {
-      //  console.log(message);
+      // console.log(message);
       io.to(message.room).emit('newMessage', {
         text: message.text,
         room: message.room,

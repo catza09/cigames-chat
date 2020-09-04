@@ -3,7 +3,7 @@ class Global {
     this.globalRoom = [];
   }
 
-  //functie adaugare user in array users
+  //functie adaugare user in array roomName
   EnterRoom(id, name, room, img) {
     var roomName = { id, name, room, img };
     this.globalRoom.push(roomName);

@@ -103,6 +103,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                             {
                                 username: req.body.username,
                                 fullname: req.body.fullname,
+                                email: req.body.email,
                                 country: req.body.country,
                                 mantra: req.body.mantra,
                                 userImage: result.userImage
@@ -121,6 +122,7 @@ module.exports = function (formidable, async, Users, Message, FriendResult) {
                             {
                                 username: req.body.username,
                                 fullname: req.body.fullname,
+                                email: req.body.email,
                                 country: req.body.country,
                                 mantra: req.body.mantra,
                                 userImage: req.body.upload
