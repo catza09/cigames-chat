@@ -1,4 +1,5 @@
 'use strict';
+const authController = require('../controllers/authController');
 
 module.exports = function (_, passport, Users, validator) {
   return {
@@ -11,6 +12,8 @@ module.exports = function (_, passport, Users, validator) {
       router.get('/auth/google', this.getGoogleLogin);
       router.get('/auth/google/callback', this.googleLogin);
 
+      router.post('/forgotpassword', authController.forgotPassword);
+      router.patch('/resetpassword/:token', authController.resetPassword);
 
       router.post(
         '/',

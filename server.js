@@ -15,7 +15,7 @@ const helmet = require('helmet');
 
 
 const adminRouter = require('./controllers/admin');
-const forgotRouter = require('./routes/resetpass')
+
 
 const { Users } = require('./helpers/UsersClass');
 const { Global } = require('./helpers/GlobalClass');
@@ -94,7 +94,7 @@ container.resolve(function (
     require('./passport/passport-facebook');
     require('./passport/passport-google');
     app.use('/admin', adminRouter);
-    app.use('/forgotpassword', forgotRouter);
+
     app.use(express.static('public'));
     app.use('/group/', express.static('./public/uploads'));
     app.use('/chat/', express.static('./public/uploads'));

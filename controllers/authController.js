@@ -1,8 +1,8 @@
-
+const crypto = require('crypto');
 const User = require('./../models/userModel');
-const catchAsync = require('./../helpers/catchAsync');
-const AppError = require('./../helpers/appError');
-const Email = require('./../helpers/email');
+const catchAsync = require('../helpers/catchAsync');
+const AppError = require('../helpers/appError');
+const sendEmail = require('../helpers/email');
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
     // 1) Get user based on POSTed email
@@ -16,15 +16,23 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // 3) Send it to user's email
+
+    const resetURL = `${req.protocol}://${req.get(
+        'host'
+    )}/resetPassword/${resetToken}`;
+
+    const message = `Forgot password confirm to ${resetURL}`;
     try {
-        const resetURL = `${req.protocol}://${req.get(
-            'host'
-        )}/resetPassword/${resetToken}`;
-        await new Email(user, resetURL).sendPasswordReset();
+        await sendEmail({
+            email: req.body.email,
+            subject: 'Your password reset token valid 10 min',
+            message
+        });
 
         res.status(200).json({
             status: 'success',
-            message: 'Token sent to email!'
+            message: 'Token sent to email'
+
         });
     } catch (err) {
         user.passwordResetToken = undefined;
@@ -36,4 +44,20 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
             500
         );
     }
+
+
+
 });
+
+exports.resetPassword = (req, res, next) => {
+
+    //get user based on token
+
+
+    // !token not expired and there is user set new password
+
+    //update changedpassAt
+
+
+
+};
