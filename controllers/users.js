@@ -11,9 +11,10 @@ module.exports = function (_, passport, Users, validator) {
       router.get('/auth/facebook/callback', this.facebookLogin);
       router.get('/auth/google', this.getGoogleLogin);
       router.get('/auth/google/callback', this.googleLogin);
+      router.get('/resetpassword/:token', this.getResetPassword);
 
       router.post('/forgotpassword', authController.forgotPassword);
-      router.patch('/resetpassword/:token', authController.resetPassword);
+      router.post('/resetpassword/:token', authController.resetPassword);
 
       router.post(
         '/',
@@ -72,6 +73,17 @@ module.exports = function (_, passport, Users, validator) {
       const errors = req.flash('error');
       return res.render('forgotpassword', {
         title: 'Cigames Chat - Forgot Password',
+        messages: errors,
+        hasErrors: errors.length > 0,
+      });
+    },
+
+    getResetPassword: function (req, res) {
+      const token = req.params.token;
+      const errors = req.flash('error');
+      return res.render('newpass', {
+        title: 'Cigames Chat - New Password',
+        token: token,
         messages: errors,
         hasErrors: errors.length > 0,
       });

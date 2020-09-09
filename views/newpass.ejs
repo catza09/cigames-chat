@@ -59,7 +59,7 @@
 
     <div id="main">
         <div class="main">
-            <form action="/resetpassword" method="patch">
+            <form id="newpass" method="post">
                 <h1>
                     Please enter your new password
                 </h1>
@@ -74,11 +74,12 @@
                 <div class="inset">
                     <p>
                         <label for="password">New Password</label>
-                        <input type="password" name="newpassword" placeholder="new password" />
+                        <input type="password" id="newpassword" placeholder="new password" />
+                        <input type="hidden" id="token" value="<%= token %>" />
                     </p>
                 </div>
                 <p class="p-container">
-                    <input type="submit" class="" style="background: #3bb5ec; border: #3bb5ec;" value="Send Reset" />
+                    <input type="submit" class="" style="background: #3bb5ec; border: #3bb5ec;" value="Submit" />
                 </p>
             </form>
         </div>
