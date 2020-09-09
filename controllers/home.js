@@ -85,7 +85,7 @@ module.exports = function (async, Game, _, Users, Message, FriendResult) {
         (err, results) => {
           //afisarea salilor cate trei pe pagina si notificarilor
           const docSala = results[0];
-          const gameType = results[1];
+          const gameTypes = results[1];
           const dateHome = results[2];
           const chat = results[3];
           const dataChunk = [];
@@ -93,7 +93,8 @@ module.exports = function (async, Game, _, Users, Message, FriendResult) {
           for (let i = 0; i < docSala.length; i += chunkSize) {
             dataChunk.push(docSala.slice(i, i + chunkSize));
           }
-          const gameSort = _.sortBy(gameType, '_id');
+          const gameSort = _.sortBy(gameTypes, '_id');
+
           res.render('home', {
             title: "Cigames Chat - Home",
             user: req.user,

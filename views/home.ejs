@@ -49,7 +49,7 @@
                       <select class="form-control" name="gameType" id="gameType">
                         <option value="">Filter By Type</option>
                         <% _.forEach(gameType, function(value){ %>
-                        <option value="<%= value._id %>">
+                        <option value="<%= value._id %>"><%= value._id %>
                         </option>
                         <% }) %>
                       </select>
@@ -118,11 +118,8 @@
   <script src="/js/home.js"></script>
   <script src="/js/global.js"></script>
   <script src="/js/deparam.js"></script>
-  <script src="chai.js"></script>
-  <script src="chai-http.js"></script>
-  <script>
-    chai.use(chaiHttp);
-  </script>
+
+
 
 </body>
 
