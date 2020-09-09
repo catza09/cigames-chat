@@ -22,7 +22,7 @@ passport.use(
       clientID: secret.facebook.clientID,
       clientSecret: secret.facebook.clientSecret,
       profileFields: ['email', 'displayName', 'photos'],
-      callbackURL: '/auth/facebook/callback',
+      callbackURL: 'https://cigames-chat.herokuapp.com/auth/facebook/callback',
       passReqToCallback: true,
     },
     (req, token, refreshToken, profile, done) => {
