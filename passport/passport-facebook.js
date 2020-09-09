@@ -10,7 +10,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -21,33 +21,37 @@ passport.use(
     {
       clientID: secret.facebook.clientID,
       clientSecret: secret.facebook.clientSecret,
-      profileFields: ['email', 'displayName', 'photos'],
+      profileFields: ['id', 'email', 'displayName', 'picture.type(large)'],
       callbackURL: 'https://cigames-chat.herokuapp.com/auth/facebook/callback',
       passReqToCallback: true,
     },
     (req, token, refreshToken, profile, done) => {
       //check email
-      User.findOne({ facebook: profile.id }, (err, user) => {
-        //check email if user exists
-        if (err) {
-          return done(err);
-        }
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = new User();
-          newUser.facebook = profile.id;
-          newUser.fullname = profile.displayName;
-          newUser.username = profile.displayName;
-          newUser.email = profile._json.email;
-          newUser.userImage =
-            'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-          newUser.fbTokens.push({ token: token });
-          newUser.save((err) => {
+      console.log(profile);
+      process.nextTick(function () {
+        User.findOne({ 'facebook': profile.id }, function (err, user) {
+          //check email if user exists
+          if (err) {
+            return done(err);
+          }
+          if (user) {
             return done(null, user);
-          });
-        }
-      });
+          } else {
+            var newUser = new User();
+            newUser.facebook = profile.id;
+            newUser.fullname = profile.displayName;
+            newUser.username = profile.displayName;
+            newUser.email = profile.emails[0].value;
+            newUser.userImage = profile.photos[0].value;
+            newUser.fbTokens = token;
+            newUser.save(function (err) {
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
+        });
+      })
     }
   )
 );
