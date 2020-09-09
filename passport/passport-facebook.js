@@ -22,7 +22,7 @@ passport.use(
       clientID: secret.facebook.clientID,
       clientSecret: secret.facebook.clientSecret,
       profileFields: ['email', 'displayName', 'photos'],
-      callbackURL: 'http://localhost:3000/auth/facebook/callback',
+      callbackURL: '/auth/facebook/callback',
       passReqToCallback: true,
     },
     (req, token, refreshToken, profile, done) => {
